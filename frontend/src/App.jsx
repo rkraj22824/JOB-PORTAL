@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Navbar from './components/shared/Navbar'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import Home from './components/Home'
 import { Toaster } from 'react-hot-toast';
+import Jobs from './components/Jobs';
+import Browser from './components/Browser';
+import Profile from './components/Profile';
 const appRouter = createBrowserRouter([
   {
     path: '/',
@@ -17,10 +19,18 @@ const appRouter = createBrowserRouter([
     path: '/signup',
     element: <Signup />
   },
-  // {
-  //   path:'/',
-  //   element:<Home/>
-  // }
+  {
+    path:'/jobs',
+    element:<Jobs/>
+  },
+  {
+    path:'/browser',
+    element:<Browser/>
+  },
+  {
+    path:'/viewprofile',
+    element:<Profile/>
+  }
 ])
 
 function App() {
@@ -30,6 +40,7 @@ function App() {
     
     <RouterProvider router={appRouter} />
     <Toaster />
+    
     </>
   )
 }

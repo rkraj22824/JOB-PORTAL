@@ -7,7 +7,7 @@ import { Button } from '../ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoading } from '@/redux/authSlice';
+import { setLoading, setUser } from '@/redux/authSlice';
 import { Loader2 } from 'lucide-react';
 import axios from 'axios';
 import { USER_API_END_POINT } from '@/utils/constant';
@@ -41,8 +41,10 @@ const Login = () => {
                 },
                 withCredentials: true,
             });
-            
+
             if (res.data.success) {
+
+                dispatch(setUser(res.data.message))
                 toast.success(res.data.message);
                 navigate("/");
             }

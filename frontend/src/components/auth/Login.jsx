@@ -19,7 +19,7 @@ const Login = () => {
         email: "",
         password: "",
         role: ""
-    })
+    });
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -27,8 +27,7 @@ const Login = () => {
 
     const changeEventHandler = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
-    }
-
+    };
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -36,15 +35,14 @@ const Login = () => {
             dispatch(setLoading(true));
 
             const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
-                Headers: {
+                headers: {
                     "Content-Type": "application/json"
                 },
                 withCredentials: true,
             });
 
             if (res.data.success) {
-                console.log(res.data.user);
-                dispatch(setUser(res.data.user))
+                dispatch(setUser(res.data.user));
                 toast.success(res.data.message);
                 navigate("/");
             }
@@ -53,19 +51,20 @@ const Login = () => {
         } finally {
             dispatch(setLoading(false));
         }
-    }
+    };
+
     return (
         <>
             <div>
                 <Navbar />
             </div>
-            <div className='flex items-center justify-center' >
+            <div className='flex items-center justify-center'>
                 <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-2 my-5'>
-                    <h1 className='font-bold  '>Login</h1>
-                    <div className='my-1 '>
+                    <h1 className='font-bold'>Login</h1>
+                    <div className='my-1'>
                         <Label>Email</Label>
                         <Input
-                            text="email"
+                            type="email"
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
@@ -73,10 +72,10 @@ const Login = () => {
                         />
                     </div>
 
-                    <div className='my-1 '>
+                    <div className='my-1'>
                         <Label>Password</Label>
                         <Input
-                            text="password"
+                            type="password"  
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
@@ -107,19 +106,31 @@ const Login = () => {
                                 />
                                 <Label htmlFor="r2">Recruiter</Label>
                             </div>
+
                         </RadioGroup>
 
                     </div>
                     {
-                        loading ? <Button className="w-full my-2"><Loader2 className='mr-2 h-4 w-4 animate-spin' />Please wait</Button> : <Button type="submit " className="w-full my-2"> Login</Button>
+                        loading ? (
+                            <Button className="w-full my-2">
+                                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                                Please wait
+                            </Button>
+                        ) : (
+                            <Button type="submit" className="w-full my-2">
+                                Login
+                            </Button>
+                        )
                     }
-                    <span className='text-sm'>Don't have an account? <Link to="/signup" className=" text-blue-600">Signup</Link></span>
+                    <span className='text-sm'>
+                        Don't have an account? <Link to="/signup" className="text-blue-600">Signup</Link>
+                    </span>
                 </form>
             </div>
 
         </>
-    )
+    );
 }
 
-export default Login
+export default Login;
 

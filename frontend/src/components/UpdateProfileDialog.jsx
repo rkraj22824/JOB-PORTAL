@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { USER_API_END_POINT } from '@/utils/constant';
 import { setUser } from '@/redux/authSlice';
-import {toast} from 'sonner';
+import toast from 'react-hot-toast'
 
 const UpdateProfileDialog = ({ open, setOpen }) => {
     const [loading, setLoading] = useState(false);
@@ -20,8 +20,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         email: user?.email ,
         phoneNumber: user?.phoneNumber ,
         bio: user?.profile?.bio ,
-        skills: user?.profile?.skills?.join(',') ,
-        file: user?.profile?.resume 
+        skills: user?.profile?.skills?.map(skill =>skill) ,
+        file: user?.profile?.resume
     });
     const dispatch = useDispatch();
 
@@ -72,10 +72,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogContent 
-                className="sm:max-w-[425px]"
-                aria-describedby="dialog-description"
-            >
+            <DialogContent className="sm:max-w-[425px]" aria-describedby="dialog-description"  >
                 <DialogHeader>
                     <DialogTitle>Update Profile</DialogTitle>
                 </DialogHeader>
@@ -142,7 +139,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                 id="file"
                                 name="file"
                                 type="file"
-                                accept="application/pdf"
+                                // accept="application/pdf"
                                 onChange={fileChangeHandler}
                                 className="col-span-3"
                             />

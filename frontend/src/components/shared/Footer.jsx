@@ -9,6 +9,10 @@ const Footer = () => {
             <h2 className="text-xl font-bold">Job Hunt</h2>
             <p className="text-sm">© 2024 Your Company. All rights reserved.</p>
           </div>
+
+
+
+          
           
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="https://facebook.com" className="hover:text-gray-400" aria-label="Facebook">

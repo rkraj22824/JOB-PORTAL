@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { setAllJobs } from '@/redux/jobSlice';
+import { setAllAdminJobs, setAllJobs } from '@/redux/jobSlice';
 import { JOB_API_END_POINT } from '@/utils/constant';
 
 const useGetAllJobs = () => {
@@ -14,6 +14,7 @@ const useGetAllJobs = () => {
                
                 if (res.data.success) {
                     dispatch(setAllJobs(res.data.jobs));
+                    dispatch(setAllAdminJobs(res.data.jobs));
                 } else {
                     console.error('Failed to fetch jobs:', res.data.message);
                 }

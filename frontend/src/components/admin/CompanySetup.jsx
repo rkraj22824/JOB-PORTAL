@@ -75,7 +75,7 @@ const CompanySetup = () => {
             description: singleCompany.description || "",
             website: singleCompany.website || "",
             location: singleCompany.location || "",
-            file: null  // Reset file input on load
+            file: null  
         });
     }, [singleCompany]);
 

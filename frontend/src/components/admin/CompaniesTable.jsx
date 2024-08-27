@@ -8,8 +8,6 @@ import { useSelector } from 'react-redux'
 
 const CompaniesTable = () => {
     const { companies, searchCompanyByText } = useSelector(store => store.company);
-
-
     const [filterCompany, setFilterCompany] = useState(companies);
     const navigate = useNavigate();
     useEffect(()=>{

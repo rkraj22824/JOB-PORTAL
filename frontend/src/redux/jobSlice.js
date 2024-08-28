@@ -6,6 +6,7 @@ const jobSlice = createSlice({
         allJobs: [],
         singleJob: null,
         allAdminJobs: [],
+        allAppliedJobs:[],
     },
     reducers: {
         setAllJobs: (state, action) => {
@@ -17,8 +18,11 @@ const jobSlice = createSlice({
         setAllAdminJobs: (state, action) => {
             state.allAdminJobs = action.payload
         },
+        setAllAppliedJobs:(state,action)=>{
+            state.allAppliedJobs = action.payload
+        }
     }
 });
 
-export const { setAllJobs, setSingleJob, setAllAdminJobs } = jobSlice.actions;
+export const { setAllJobs, setSingleJob, setAllAdminJobs,setAllAppliedJobs } = jobSlice.actions;
 export default jobSlice.reducer;
